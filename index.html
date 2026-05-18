@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Yang Liu</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 28px;
+    }
+
+    header {
+      margin-bottom: 56px;
+    }
+
+    h1 {
+      font-size: 52px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .intro {
+      margin-top: 28px;
+      font-size: 17px;
+      color: #333;
+    }
+
+    section {
+      margin-top: 52px;
+      padding-top: 20px;
+      border-top: 1px solid #d9d9d9;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
+      color: #1f3b5b;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    a {
+      color: #1a4f8b;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .publication {
+      margin-bottom: 18px;
+    }
+
+    .publication-title {
+      font-weight: 600;
+      color: #222;
+    }
+
+    .publication-meta {
+      color: #666;
+      font-size: 15px;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid #d9d9d9;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      p,
+      li {
+        font-size: 16px;
+      }
+
+      .container {
+        padding: 48px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+    <h1>Yang Liu</h1>
+
+    <p class="subtitle">
+      PhD Candidate · Wuhan University
+    </p>
+
+    <p class="intro">
+      I am a PhD candidate at Wuhan University working in robotics and SLAM.
+      My research focuses on <strong>semantic SLAM</strong>, <strong>dynamic SLAM</strong>,
+      and <strong>embodied navigation</strong>.
+    </p>
+  </header>
+
+
+    <section>
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>SLAM and Multi-Object Tracking Systems (Lightweight/Complete version)</h3>
+        <video width="100%" autoplay muted loop playsinline>
+          <source src="assets/slim_slammot_all.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="project">
+        <h3>A Object-level Semantic Mapping System</h3>
+        <video width="100%" autoplay muted loop playsinline>
+          <source src="assets/object_slam.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="project">
+        <h3>A Lightweight Visual-Inertial Odometry</h3>
+        <video width="100%" autoplay muted loop playsinline>
+          <source src="assets/slim_slam_mh01_speedup.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Main Publications</h2>
+      <div class="publication">
+        <div class="publication-title">
+          SDS-SLAM: VSLAM fusing static and dynamic semantic information for driving scenarios.
+        </div>
+
+        <div class="publication-meta">
+          Yang Liu, et al. · IEEE Transactions on Automation Science and Engineering , 2025
+        </div>
+      </div>
+
+
+      <div class="publication">
+        <div class="publication-title">
+          DynaMeshslam: A Mesh-based Dynamic Visual SLAMMOT Method
+        </div>
+
+        <div class="publication-meta">
+          Yang Liu, et al. · IEEE Robotics and Automation Letters , 2024
+        </div>
+      </div>
+
+      <div class="publication">
+        <div class="publication-title">
+          图像语义信息在视觉 SLAM 中的应用研究进展
+        </div>
+
+        <div class="publication-meta">
+          Yang Liu, et al. · 测绘学报 , 2024
+        </div>
+      </div>
+
+      
+      <div class="publication">
+        <div class="publication-title">
+          Object-aware data association for the semantically constrained visual SLAM
+        </div>
+
+        <div class="publication-meta">
+          Yang Liu, et al. · Intelligent Service Robotics , 2023
+        </div>
+      </div>
+
+      
+    </section>
+
+    <section>
+      <h2>Links</h2>
+
+      <p>
+        GitHub:
+        <a href="https://github.com/yangliu9527" target="_blank">
+          github.com/yangliu9527
+        </a>
+      </p>
+    </section>
+
+    <footer>
+      © 2026 Yang Liu
+    </footer>
+
+  </div>
+
+</body>
+</html>
