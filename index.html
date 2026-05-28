@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Yang Liu</title>
-
   <style>
     * {
       margin: 0;
@@ -14,57 +12,90 @@
     }
 
     body {
-      font-family: "Georgia", "Times New Roman", serif;
-      background: #ffffff;
-      color: #222;
-      line-height: 1.8;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8f9fa;
+      color: #2d3436;
+      line-height: 1.7;
     }
 
     .container {
-      max-width: 860px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 72px 28px;
+      padding: 60px 28px;
     }
 
+    /* Header */
     header {
-      margin-bottom: 56px;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 2px solid #1a3a5c;
     }
 
     h1 {
-      font-size: 52px;
-      font-weight: 600;
-      color: #111;
-      margin-bottom: 12px;
+      font-size: 48px;
+      font-weight: 700;
+      color: #1a3a5c;
+      margin-bottom: 8px;
       letter-spacing: -0.5px;
     }
 
     .subtitle {
-      font-size: 20px;
-      color: #555;
+      font-size: 18px;
+      color: #5a6c7d;
+      font-weight: 500;
+      margin-bottom: 16px;
     }
 
     .intro {
-      margin-top: 28px;
-      font-size: 17px;
-      color: #333;
+      font-size: 16px;
+      color: #4a5568;
+      max-width: 700px;
     }
 
+    .intro strong {
+      color: #1a3a5c;
+    }
+
+    /* Section styling */
     section {
-      margin-top: 52px;
-      padding-top: 20px;
-      border-top: 1px solid #d9d9d9;
+      margin-top: 48px;
+      padding: 28px 32px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(26, 58, 92, 0.06);
+      border-left: 4px solid #1a3a5c;
     }
 
     h2 {
-      font-size: 24px;
-      margin-bottom: 18px;
-      color: #1f3b5b;
+      font-size: 22px;
+      margin-bottom: 24px;
+      color: #1a3a5c;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 24px;
+      background: #2c5282;
+      border-radius: 3px;
+    }
+
+    h3 {
+      font-size: 17px;
+      color: #2d3748;
+      margin-bottom: 16px;
       font-weight: 600;
     }
 
     p {
-      font-size: 17px;
-      margin-bottom: 14px;
+      font-size: 15px;
+      margin-bottom: 12px;
+      color: #4a5568;
     }
 
     ul {
@@ -72,127 +103,282 @@
     }
 
     li {
-      margin-bottom: 10px;
-      font-size: 17px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: #4a5568;
     }
 
     a {
-      color: #1a4f8b;
+      color: #2c5282;
       text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
     }
 
     a:hover {
+      color: #1a3a5c;
       text-decoration: underline;
     }
 
+    /* Publication styling */
     .publication {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      padding: 16px 20px;
+      background: #f7fafc;
+      border-radius: 8px;
+      border-left: 3px solid #2c5282;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .publication:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(26, 58, 92, 0.08);
     }
 
     .publication-title {
       font-weight: 600;
-      color: #222;
+      color: #1a202c;
+      font-size: 15px;
+      margin-bottom: 6px;
     }
 
     .publication-meta {
-      color: #666;
-      font-size: 15px;
-    }
-
-    footer {
-      margin-top: 80px;
-      padding-top: 24px;
-      border-top: 1px solid #d9d9d9;
-      color: #777;
+      color: #718096;
       font-size: 14px;
     }
 
+    /* Video layouts - 2 horizontal + 1 vertical */
+    .video-grid-2h1v {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+      /* Total height = 2 * horizontal_height + gap. 
+         Let horizontal videos be 16:9, so height = width/16*9.
+         Two rows: total height = 2*(width/16*9) + 12px gap.
+         The vertical video spans 2 rows, so its height = total height.
+         Vertical video is 9:16, so width = height/16*9.
+         Let total container width = W. Left column width = x, right column width = W - x - 12.
+         x/16*9*2 + 12 = (W - x - 12)/9*16
+         9x/8 + 12 = 16(W-x-12)/9
+         81x + 864 = 128(W-x-12)
+         81x + 864 = 128W - 128x - 1536
+         209x = 128W - 2400
+         x = (128W - 2400)/209
+         For W=896 (960-64 padding): x = (128*896 - 2400)/209 = (114688-2400)/209 = 112288/209 ≈ 537
+         Right column width = 896 - 537 - 12 = 347
+         Check: left height = 537/16*9*2 + 12 = 302.06*2 + 12 = 616.12
+         Right height = 347/9*16 = 616.89 ✓
+         So left column should be about 60%, right about 38.7%
+      */
+      grid-template-columns: 60% 1fr;
+    }
+
+    .video-grid-2h1v .video-item:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .video-grid-2h1v .video-item:nth-child(2) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .video-grid-2h1v .video-item:nth-child(3) {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    /* Video layouts - 2 vertical */
+    .video-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    /* Video layouts - 1 horizontal, full width */
+    .video-grid-1col {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .video-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #edf2f7;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .video-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-item.portrait {
+      aspect-ratio: 9/16;
+    }
+
+    .video-item.landscape {
+      aspect-ratio: 16/9;
+    }
+
+    /* For the 2h1v grid, make horizontal items fill their cells */
+    .video-grid-2h1v .video-item.landscape {
+      aspect-ratio: auto;
+      height: 100%;
+      width: 100%;
+    }
+
+    .video-grid-2h1v .video-item.portrait {
+      aspect-ratio: auto;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* Links section */
+    .links-section p {
+      font-size: 15px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      color: #a0aec0;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       h1 {
-        font-size: 40px;
+        font-size: 36px;
       }
 
       .subtitle {
-        font-size: 18px;
-      }
-
-      p,
-      li {
         font-size: 16px;
       }
 
-      .container {
-        padding: 48px 22px;
+      section {
+        padding: 20px 18px;
+      }
+
+      .video-grid-2h1v {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .video-grid-2h1v .video-item:nth-child(3) {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .video-grid-2h1v .video-item.landscape,
+      .video-grid-2h1v .video-item.portrait {
+        aspect-ratio: 16/9;
+        height: auto;
+      }
+
+      .video-grid-2col {
+        grid-template-columns: 1fr;
+      }
+
+      .video-item.portrait {
+        aspect-ratio: 9/16;
+        max-height: 400px;
       }
     }
   </style>
+<base target="_blank">
 </head>
 
 <body>
-
   <div class="container">
-
     <header>
-    <h1>Yang Liu</h1>
-
-    <p class="subtitle">
-      PhD Candidate · Wuhan University
-    </p>
-
-    <p class="intro">
-      I am a PhD candidate at Wuhan University working in robotics and SLAM.
-      My research focuses on <strong>semantic SLAM</strong>, <strong>dynamic SLAM</strong>,
-      and <strong>embodied navigation</strong>.
-    </p>
-  </header>
-
+      <h1>Yang Liu</h1>
+      <p class="subtitle">PhD Candidate · Wuhan University</p>
+      <p class="intro">
+        I am a PhD candidate at Wuhan University working in robotics and SLAM.
+        My research focuses on <strong>semantic SLAM</strong>, <strong>dynamic SLAM</strong>,
+        and <strong>embodied navigation</strong>.
+      </p>
+    </header>
 
     <section>
       <h2>Projects</h2>
 
       <div class="project">
-        <h3>SLAM and Multi-Object Tracking Systems (Lightweight/Complete version)</h3>
-        <video width="100%" autoplay muted loop playsinline>
-          <source src="assets/slim_slammot_all.mp4" type="video/mp4">
-        </video>
+        <h3>SLAM and Multi-Object Tracking Systems (Lightweight/Complete Version)</h3>
+        <div class="video-grid-2h1v">
+          <div class="video-item landscape">
+            <video autoplay muted loop playsinline>
+              <source src="assets/slammot/slim_slammot_omd_speedup.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-item landscape">
+            <video autoplay muted loop playsinline>
+              <source src="assets/slammot/slim_slammot_omd_speedup.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-item portrait">
+            <video autoplay muted loop playsinline>
+              <source src="assets/slammot/slim_slammot_kitti03_speedup.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
       </div>
 
       <div class="project">
-        <h3>A Object-level Semantic Mapping System</h3>
-        <video width="100%" autoplay muted loop playsinline>
-          <source src="assets/object_slam.mp4" type="video/mp4">
-        </video>
+        <h3>An Object-Level Semantic Mapping System</h3>
+        <div class="video-grid-2col">
+          <div class="video-item portrait">
+            <video autoplay muted loop playsinline>
+              <source src="assets/object_slam/object_slam_indoor.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-item portrait">
+            <video autoplay muted loop playsinline>
+              <source src="assets/object_slam/object_slam_outdoor.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
       </div>
 
       <div class="project">
         <h3>A Lightweight Visual-Inertial Odometry</h3>
-        <video width="100%" autoplay muted loop playsinline>
-          <source src="assets/slim_slam_mh01_speedup.mp4" type="video/mp4">
-        </video>
+        <div class="video-grid-1col">
+          <div class="video-item landscape">
+            <video autoplay muted loop playsinline>
+              <source src="assets/slim_slam/slim_slam_mh01_speedup.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
       </div>
-
     </section>
 
     <section>
-      <h2>Main Publications</h2>
+      <h2>Publications</h2>
       <div class="publication">
         <div class="publication-title">
-          SDS-SLAM: VSLAM fusing static and dynamic semantic information for driving scenarios.
+          SDS-SLAM: VSLAM Fusing Static and Dynamic Semantic Information for Driving Scenarios
         </div>
-
         <div class="publication-meta">
-          Yang Liu, et al. · IEEE Transactions on Automation Science and Engineering , 2025
+          Yang Liu, et al. · IEEE Transactions on Automation Science and Engineering, 2025
         </div>
       </div>
 
-
       <div class="publication">
         <div class="publication-title">
-          DynaMeshslam: A Mesh-based Dynamic Visual SLAMMOT Method
+          DynaMeshSLAM: A Mesh-Based Dynamic Visual SLAMMOT Method
         </div>
-
         <div class="publication-meta">
-          Yang Liu, et al. · IEEE Robotics and Automation Letters , 2024
+          Yang Liu, et al. · IEEE Robotics and Automation Letters, 2024
         </div>
       </div>
 
@@ -200,29 +386,23 @@
         <div class="publication-title">
           图像语义信息在视觉 SLAM 中的应用研究进展
         </div>
-
         <div class="publication-meta">
-          Yang Liu, et al. · 测绘学报 , 2024
+          Yang Liu, et al. · 测绘学报, 2024
         </div>
       </div>
 
-      
       <div class="publication">
         <div class="publication-title">
-          Object-aware data association for the semantically constrained visual SLAM
+          Object-Aware Data Association for the Semantically Constrained Visual SLAM
         </div>
-
         <div class="publication-meta">
-          Yang Liu, et al. · Intelligent Service Robotics , 2023
+          Yang Liu, et al. · Intelligent Service Robotics, 2023
         </div>
       </div>
-
-      
     </section>
 
-    <section>
+    <section class="links-section">
       <h2>Links</h2>
-
       <p>
         GitHub:
         <a href="https://github.com/yangliu9527" target="_blank">
@@ -234,8 +414,6 @@
     <footer>
       © 2026 Yang Liu
     </footer>
-
   </div>
-
 </body>
 </html>
