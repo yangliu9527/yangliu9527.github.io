@@ -150,29 +150,10 @@
     /* Video layouts - 2 horizontal + 1 vertical */
     .video-grid-2h1v {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 60% 1fr;
       grid-template-rows: 1fr 1fr;
       gap: 12px;
       margin-bottom: 16px;
-      /* Total height = 2 * horizontal_height + gap. 
-         Let horizontal videos be 16:9, so height = width/16*9.
-         Two rows: total height = 2*(width/16*9) + 12px gap.
-         The vertical video spans 2 rows, so its height = total height.
-         Vertical video is 9:16, so width = height/16*9.
-         Let total container width = W. Left column width = x, right column width = W - x - 12.
-         x/16*9*2 + 12 = (W - x - 12)/9*16
-         9x/8 + 12 = 16(W-x-12)/9
-         81x + 864 = 128(W-x-12)
-         81x + 864 = 128W - 128x - 1536
-         209x = 128W - 2400
-         x = (128W - 2400)/209
-         For W=896 (960-64 padding): x = (128*896 - 2400)/209 = (114688-2400)/209 = 112288/209 ≈ 537
-         Right column width = 896 - 537 - 12 = 347
-         Check: left height = 537/16*9*2 + 12 = 302.06*2 + 12 = 616.12
-         Right height = 347/9*16 = 616.89 ✓
-         So left column should be about 60%, right about 38.7%
-      */
-      grid-template-columns: 60% 1fr;
     }
 
     .video-grid-2h1v .video-item:nth-child(1) {
@@ -196,12 +177,32 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-bottom: 16px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* Video layouts - 1 horizontal, full width */
     .video-grid-1col {
-      display: block;
       margin-bottom: 16px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video-grid-1col .video-item {
+      width: 100%;
+      height: auto;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .video-grid-1col .video-item video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
     .video-item {
@@ -227,13 +228,8 @@
       aspect-ratio: 16/9;
     }
 
-    /* For the 2h1v grid, make horizontal items fill their cells */
-    .video-grid-2h1v .video-item.landscape {
-      aspect-ratio: auto;
-      height: 100%;
-      width: 100%;
-    }
-
+    /* For the 2h1v grid, make items fill their cells */
+    .video-grid-2h1v .video-item.landscape,
     .video-grid-2h1v .video-item.portrait {
       aspect-ratio: auto;
       height: 100%;
@@ -287,6 +283,11 @@
 
       .video-grid-2col {
         grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .video-grid-1col {
+        max-width: 100%;
       }
 
       .video-item.portrait {
@@ -295,6 +296,7 @@
       }
     }
   </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 
